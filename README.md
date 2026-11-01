@@ -2,6 +2,10 @@
 
 Turn product images and descriptions into viral meme marketing campaigns powered by **Sarvam AI**!
 
+🌐 **Live Demo on GitHub Pages**: [https://sivadogga007.github.io/sarvam-ai/](https://sivadogga007.github.io/sarvam-ai/)
+
+---
+
 ## 🌟 Key Capabilities
 
 1. **Product Image & Link Intake**:
@@ -20,18 +24,35 @@ Turn product images and descriptions into viral meme marketing campaigns powered
 
 ---
 
-## 🚀 Quick Start (Local)
+## 🌐 GitHub Pages Deployment
 
-```bash
-python3 main.py
-```
-Open **[http://localhost:8000](http://localhost:8000)** in your browser!
+The application is deployed to **GitHub Pages**:
+🔗 **[https://sivadogga007.github.io/sarvam-ai/](https://sivadogga007.github.io/sarvam-ai/)**
+
+### How it Works on GitHub Pages:
+- Fully client-side capable: When opened on GitHub Pages, the application calls Sarvam AI's multimodal and TTS APIs directly from your browser.
+- Enter your **Sarvam API Key** directly in the settings panel (saved securely in your browser's local storage).
+- Automatically deployed via GitHub Actions workflow (`.github/workflows/deploy-pages.yml`) and backed by the `gh-pages` branch and `/docs` folder.
 
 ---
 
-## 🌐 Deploy to Vercel
+## 💻 Running Locally
 
-```bash
-vercel
-```
-Add `SARVAM_API_KEY` in your Vercel Dashboard under **Settings → Environment Variables**.
+1. Clone and install dependencies:
+   ```bash
+   git clone https://github.com/Sivadogga007/sarvam-ai.git
+   cd sarvam-ai
+   pip install -r requirements.txt
+   ```
+
+2. Add your Sarvam API Key to `.env`:
+   ```bash
+   SARVAM_API_KEY="your-sarvam-api-key"
+   ```
+
+3. Start the server:
+   ```bash
+   python3 main.py
+   ```
+
+4. Open [http://localhost:8000](http://localhost:8000) in your browser!

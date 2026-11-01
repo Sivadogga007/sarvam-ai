@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MemeMarket AI | Business Digital Marketing Meme & Speech Studio</title>
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+
+  <!-- Top Header -->
+  <header>
+    <div class="brand">
+      <div class="brand-icon">🚀</div>
+      <div class="brand-text">
+        <h1>MemeMarket AI</h1>
+        <p>Business Meme Marketing, "Talk the Meme" Audio Ads & Viral Memes</p>
+      </div>
+    </div>
+    <div class="header-badges">
+      <div id="status-badge" class="badge-connected" style="display: none;">
+        <span class="dot"></span> Sarvam AI Connected
+      </div>
+      <a href="https://github.com/Sivadogga007/sarvam-ai" target="_blank" rel="noopener noreferrer" class="btn-secondary" style="text-decoration: none; font-size: 0.8rem; padding: 6px 12px; display: inline-flex; align-items: center; gap: 6px;">
+        ⭐ GitHub Repo
+      </a>
+    </div>
+  </header>
+
+  <!-- Main Workspace -->
+  <div class="container">
+
+    <!-- Left Column: Input & Controls -->
+    <div class="card">
+      <h2 class="card-title">🖼️ 1. Product Image or Meme</h2>
+
+      <div class="form-group">
+        <label class="form-label">Choose Pre-loaded Product / Meme Sample:</label>
+        <div id="sample-grid" class="sample-grid">
+          <!-- Populated dynamically via /api/samples -->
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">🔗 Or Paste Image Link / Instagram Post Link:</label>
+        <div style="display: flex; gap: 8px;">
+          <input type="url" id="image-url-input" class="form-input" placeholder="Paste image link or instagram.com/p/... or /reel/..." style="flex: 1;">
+          <button type="button" id="btn-load-url" class="btn-secondary" style="white-space: nowrap;">⚡ Auto-Fetch</button>
+        </div>
+        <div id="url-status" style="font-size: 0.82rem; margin-top: 6px; display: none;"></div>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Or Upload Your Product / Meme Image:</label>
+        <div id="dropzone" class="dropzone">
+          <div class="dropzone-icon">📁</div>
+          <div style="font-weight: 600; font-size: 0.95rem;">Drag & drop image here</div>
+          <div style="color: var(--text-dim); font-size: 0.8rem; margin-top: 4px;">Supports PNG, JPG, JPEG, WEBP</div>
+          <input type="file" id="file-input" accept="image/png,image/jpeg,image/webp" style="display: none;">
+        </div>
+      </div>
+
+      <!-- Preview Image -->
+      <div id="preview-container" class="preview-container" style="display: none;">
+        <img id="preview-img" class="preview-image" alt="Product Preview">
+      </div>
+
+      <h2 class="card-title" style="margin-top: 24px;">💼 2. Product Details & Pitch</h2>
+
+      <div class="form-group">
+        <label class="form-label">Product / Brand Name:</label>
+        <input type="text" id="product-name" class="form-input" placeholder="e.g. TaskFlow AI or ZapBilling" value="TaskFlow AI">
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Product Description & What Problem It Solves:</label>
+        <textarea id="product-desc" class="form-input" rows="3" placeholder="Describe what the product does and the painful problem it eliminates...">Autonomous AI project manager that automatically converts chaotic client requests into organized tickets, prevents scope creep, and stops clients from underpaying.</textarea>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Target Audience:</label>
+        <select id="target-audience" class="form-select">
+          <option value="Freelancers, Agency Owners & Developers">Freelancers, Agency Owners & Developers</option>
+          <option value="Startups & Small Business Owners">Startups & Small Business Owners</option>
+          <option value="Corporate 9-to-5 Employees & Managers">Corporate 9-to-5 Employees & Managers</option>
+          <option value="Gen Z & Online Shoppers">Gen Z & Online Shoppers</option>
+          <option value="College Students & Young Professionals">College Students & Young Professionals</option>
+        </select>
+      </div>
+
+      <h2 class="card-title" style="margin-top: 24px;">🎙️ 3. Casting & Voice Settings</h2>
+
+      <div class="form-group" id="api-key-container" style="display: none; background: rgba(139, 92, 246, 0.08); border: 1px solid rgba(139, 92, 246, 0.25); border-radius: var(--radius-sm); padding: 12px; margin-bottom: 16px;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+          <label class="form-label" style="margin: 0;">🔑 Sarvam AI API Key:</label>
+          <span id="key-saved-indicator" style="font-size: 0.75rem; color: #34d399; display: none;">Saved locally</span>
+        </div>
+        <div style="display: flex; gap: 8px;">
+          <input type="password" id="custom-api-key" class="form-input" placeholder="Paste your Sarvam API key here" style="flex: 1;">
+          <button type="button" id="btn-toggle-key" class="btn-secondary" style="padding: 0 12px; font-size: 0.85rem;" title="Show/Hide Key">👁️</button>
+        </div>
+        <p style="font-size: 0.75rem; color: var(--text-muted); margin: 6px 0 0 0;">
+          Required for GitHub Pages. Stored securely in your browser's localStorage.
+        </p>
+      </div>
+
+      <div class="grid-2">
+        <div class="form-group">
+          <label class="form-label">Language & Accent:</label>
+          <select id="language-select" class="form-select">
+            <option value="en-IN" selected>English (India)</option>
+            <option value="hinglish">Hinglish (Desi comedy mix)</option>
+            <option value="hi-IN">Hindi (हिन्दी)</option>
+            <option value="bn-IN">Bengali (বাংলা)</option>
+            <option value="ta-IN">Tamil (தமிழ்)</option>
+            <option value="te-IN">Telugu (తెలుగు)</option>
+            <option value="kn-IN">Kannada (ಕನ್ನಡ)</option>
+            <option value="mr-IN">Marathi (मराठी)</option>
+            <option value="gu-IN">Gujarati (ગુજરાતી)</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Marketing Humor Style:</label>
+          <select id="humor-style" class="form-select">
+            <option value="standup" selected>🎤 Stand-up Product Roast</option>
+            <option value="roast">🔥 Savage Competitor Roast</option>
+            <option value="relatable">💡 Relatable Customer Pain Point</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="grid-2">
+        <div class="form-group">
+          <label class="form-label">Speaker 1 Voice (Customer):</label>
+          <select id="voice-spk1" class="form-select">
+            <option value="rohan" selected>Rohan (Stressed Customer)</option>
+            <option value="dev">Dev (Casual Male)</option>
+            <option value="kabir">Kabir (Deep Voice)</option>
+            <option value="sunny">Sunny (High energy)</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Speaker 2 Voice (Product/Hero):</label>
+          <select id="voice-spk2" class="form-select">
+            <option value="simran" selected>Simran (Smart Solution)</option>
+            <option value="aditya">Aditya (Confident Pitch)</option>
+            <option value="priya">Priya (Conversational)</option>
+            <option value="ritu">Ritu (Animated)</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Stand-up Pitch Narrator Voice:</label>
+        <select id="voice-comedian" class="form-select">
+          <option value="aditya" selected>Aditya (Punchy Stand-up Delivery)</option>
+          <option value="sunny">Sunny (High-energy Roast Delivery)</option>
+          <option value="ritu">Ritu (Sarcastic Comedy Delivery)</option>
+          <option value="rohan">Rohan (Warm Storyteller Delivery)</option>
+        </select>
+      </div>
+
+      <button id="btn-generate" class="btn-primary" disabled>
+        <span>🚀 Launch Meme Marketing Engine</span>
+      </button>
+    </div>
+
+    <!-- Right Column: Results & Experience -->
+    <div class="card">
+      <!-- Loading Spinner -->
+      <div id="spinner-container" class="spinner-container">
+        <div class="spinner"></div>
+        <div id="step-text" class="step-indicator">Sarvam Multimodal AI is analyzing the product & generating memes...</div>
+        <p style="color: var(--text-dim); font-size: 0.85rem; margin-top: 8px;">
+          Using Sarvam AI Vision, Scripting & Bulbul Text-to-Speech
+        </p>
+      </div>
+
+      <!-- Empty State -->
+      <div id="empty-state" class="empty-state">
+        <div class="empty-icon">📈</div>
+        <h2 style="color: #fff; margin-bottom: 8px;">Digital Marketing Through Memes</h2>
+        <p style="max-width: 500px; margin: 0 auto; color: var(--text-muted);">
+          Provide your product image (or link) and a brief description. Sarvam AI will extract customer pain points, make the meme <b>talk out loud</b> with voice actors, generate <b>new viral marketing meme images</b>, deliver a <b>stand-up comedy product pitch</b>, and write <b>ready-to-post social copy</b>!
+        </p>
+      </div>
+
+      <!-- Results Container -->
+      <div id="results-container" style="display: none;">
+        <!-- Intelligence Summary Card -->
+        <div class="intel-card">
+          <span id="intel-template" class="intel-badge">VIRAL CAMPAIGN</span>
+          <h2 id="intel-title" class="intel-title">Campaign Title</h2>
+          <div id="intel-hook" style="color: #c084fc; font-weight: 700; font-size: 1.05rem; margin-bottom: 8px;">"Ad Hook"</div>
+          <div id="intel-punchline" class="intel-punchline">💥 The Pain Point</div>
+          <p id="intel-why" class="intel-why">How the product solves it</p>
+        </div>
+
+        <!-- Navigation Tabs -->
+        <div class="tabs-header">
+          <button class="tab-btn active" data-target="tab-act1">🗣️ "Talk the Meme" (Voice Ad Skit)</button>
+          <button class="tab-btn" data-target="tab-memes">🖼️ Generated Marketing Memes</button>
+          <button class="tab-btn" data-target="tab-standup">🎙️ Stand-up Product Pitch</button>
+          <button class="tab-btn" data-target="tab-social">📱 Viral Social Media Copy</button>
+        </div>
+
+        <!-- Tab 1: "Talk the Meme" (Voice Ad Skit) -->
+        <div id="tab-act1" class="tab-pane active">
+          <div id="act1-master-container" class="master-player-card" style="display: none;">
+            <div class="master-player-header">
+              <span>▶️ Play Full Audio Ad Skit (30s)</span>
+              <span style="font-size: 0.8rem; color: #a855f7; font-weight: normal;">(Sarvam Bulbul Multi-Voice Ad)</span>
+            </div>
+            <audio id="act1-master-audio" controls></audio>
+          </div>
+
+          <div id="act1-chat-container" class="chat-container">
+            <!-- Populated with speech bubbles -->
+          </div>
+        </div>
+
+        <!-- Tab 2: Generated Marketing Memes (Visual Images) -->
+        <div id="tab-memes" class="tab-pane">
+          <h3 style="color: #fff; margin-bottom: 8px;">🖼️ Brand Marketing Meme Images</h3>
+          <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 20px;">
+            These custom meme images were created specifically for your product to drive engagement and viral shares!
+          </p>
+          <div id="memes-gallery-container" style="display: flex; flex-direction: column; gap: 24px;">
+            <!-- Populated with generated comic meme images -->
+          </div>
+        </div>
+
+        <!-- Tab 3: Stand-up Product Roast & Pitch -->
+        <div id="tab-standup" class="tab-pane">
+          <div class="standup-stage">
+            <div class="stage-spotlight"></div>
+            <div style="font-size: 0.82rem; color: #c084fc; font-weight: 700; text-transform: uppercase; margin-bottom: 12px; letter-spacing: 1px;">
+              🎙️ Stand-up Comedy Routine • Roasting the Problem & Pitching the Product
+            </div>
+            <div id="standup-text" class="standup-quote">
+              <!-- Comedian script -->
+            </div>
+            <div style="margin-top: 20px;">
+              <label class="form-label" style="color: #d8b4fe;">🔊 Listen to the Comedian Deliver the Pitch:</label>
+              <audio id="standup-audio" controls style="display: none;"></audio>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tab 4: Viral Social Media Copy -->
+        <div id="tab-social" class="tab-pane">
+          <div style="display: flex; flex-direction: column; gap: 20px;">
+            <div style="background: rgba(225, 48, 108, 0.1); border: 1px solid rgba(225, 48, 108, 0.3); border-radius: var(--radius-md); padding: 18px;">
+              <h4 style="margin: 0 0 10px 0; color: #f472b6; display: flex; align-items: center; gap: 8px;">
+                📸 Instagram Post Caption
+              </h4>
+              <p id="social-ig" style="color: #f3f4f6; font-size: 0.95rem; line-height: 1.6; white-space: pre-wrap; margin-bottom: 12px;"></p>
+              <button class="btn-secondary" onclick="navigator.clipboard.writeText(document.getElementById('social-ig').innerText); alert('Copied Instagram caption!');">📋 Copy Instagram Copy</button>
+            </div>
+
+            <div style="background: rgba(10, 102, 194, 0.1); border: 1px solid rgba(10, 102, 194, 0.3); border-radius: var(--radius-md); padding: 18px;">
+              <h4 style="margin: 0 0 10px 0; color: #60a5fa; display: flex; align-items: center; gap: 8px;">
+                💼 LinkedIn Post (B2B Meme Leadership)
+              </h4>
+              <p id="social-li" style="color: #f3f4f6; font-size: 0.95rem; line-height: 1.6; white-space: pre-wrap; margin-bottom: 12px;"></p>
+              <button class="btn-secondary" onclick="navigator.clipboard.writeText(document.getElementById('social-li').innerText); alert('Copied LinkedIn post!');">📋 Copy LinkedIn Copy</button>
+            </div>
+
+            <div style="background: rgba(29, 155, 240, 0.1); border: 1px solid rgba(29, 155, 240, 0.3); border-radius: var(--radius-md); padding: 18px;">
+              <h4 style="margin: 0 0 10px 0; color: #38bdf8; display: flex; align-items: center; gap: 8px;">
+                🐦 Twitter / X Viral Tweet
+              </h4>
+              <p id="social-tw" style="color: #f3f4f6; font-size: 0.95rem; line-height: 1.6; white-space: pre-wrap; margin-bottom: 12px;"></p>
+              <button class="btn-secondary" onclick="navigator.clipboard.writeText(document.getElementById('social-tw').innerText); alert('Copied Tweet!');">📋 Copy Tweet</button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+  <script src="./app.js"></script>
+</body>
+</html>
