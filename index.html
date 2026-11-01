@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>MemeMarket AI | Business Digital Marketing Meme & Speech Studio</title>
-  <link rel="stylesheet" href="/styles.css">
+  <link rel="stylesheet" href="./styles.css">
 </head>
 <body>
 
@@ -21,6 +21,9 @@
       <div id="status-badge" class="badge-connected" style="display: none;">
         <span class="dot"></span> Sarvam AI Connected
       </div>
+      <a href="https://github.com/Sivadogga007/sarvam-ai" target="_blank" rel="noopener noreferrer" class="btn-secondary" style="text-decoration: none; font-size: 0.8rem; padding: 6px 12px; display: inline-flex; align-items: center; gap: 6px;">
+        ⭐ GitHub Repo
+      </a>
     </div>
   </header>
 
@@ -87,9 +90,18 @@
 
       <h2 class="card-title" style="margin-top: 24px;">🎙️ 3. Casting & Voice Settings</h2>
 
-      <div class="form-group" id="api-key-container" style="display: none;">
-        <label class="form-label">Sarvam API Key (optional if in .env):</label>
-        <input type="password" id="custom-api-key" class="form-input" placeholder="Paste your Sarvam API key here">
+      <div class="form-group" id="api-key-container" style="display: none; background: rgba(139, 92, 246, 0.08); border: 1px solid rgba(139, 92, 246, 0.25); border-radius: var(--radius-sm); padding: 12px; margin-bottom: 16px;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+          <label class="form-label" style="margin: 0;">🔑 Sarvam AI API Key:</label>
+          <span id="key-saved-indicator" style="font-size: 0.75rem; color: #34d399; display: none;">Saved locally</span>
+        </div>
+        <div style="display: flex; gap: 8px;">
+          <input type="password" id="custom-api-key" class="form-input" placeholder="Paste your Sarvam API key here" style="flex: 1;">
+          <button type="button" id="btn-toggle-key" class="btn-secondary" style="padding: 0 12px; font-size: 0.85rem;" title="Show/Hide Key">👁️</button>
+        </div>
+        <p style="font-size: 0.75rem; color: var(--text-muted); margin: 6px 0 0 0;">
+          Required for GitHub Pages. Stored securely in your browser's localStorage.
+        </p>
       </div>
 
       <div class="grid-2">
@@ -269,6 +281,6 @@
 
   </div>
 
-  <script src="/app.js"></script>
+  <script src="./app.js"></script>
 </body>
 </html>
