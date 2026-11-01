@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MemeSpeak AI | Sarvam Meme Speech & Humor Studio</title>
+  <title>MemeMarket AI | Business Digital Marketing Meme & Speech Studio</title>
   <link rel="stylesheet" href="/styles.css">
 </head>
 <body>
@@ -11,10 +11,10 @@
   <!-- Top Header -->
   <header>
     <div class="brand">
-      <div class="brand-icon">🎭</div>
+      <div class="brand-icon">🚀</div>
       <div class="brand-text">
-        <h1>MemeSpeak AI</h1>
-        <p>Multimodal Meme Perception, Speech Conversation & Humor Roast</p>
+        <h1>MemeMarket AI</h1>
+        <p>Business Meme Marketing, "Talk the Meme" Audio Ads & Viral Memes</p>
       </div>
     </div>
     <div class="header-badges">
@@ -29,17 +29,17 @@
 
     <!-- Left Column: Input & Controls -->
     <div class="card">
-      <h2 class="card-title">🖼️ 1. Choose or Upload Meme</h2>
+      <h2 class="card-title">🖼️ 1. Product Image or Meme</h2>
 
       <div class="form-group">
-        <label class="form-label">Pre-loaded Classic Meme Gallery:</label>
+        <label class="form-label">Choose Pre-loaded Product / Meme Sample:</label>
         <div id="sample-grid" class="sample-grid">
           <!-- Populated dynamically via /api/samples -->
         </div>
       </div>
 
       <div class="form-group">
-        <label class="form-label">🔗 Or Paste Image Link / Instagram Meme Post Link:</label>
+        <label class="form-label">🔗 Or Paste Image Link / Instagram Post Link:</label>
         <div style="display: flex; gap: 8px;">
           <input type="url" id="image-url-input" class="form-input" placeholder="Paste image link or instagram.com/p/... or /reel/..." style="flex: 1;">
           <button type="button" id="btn-load-url" class="btn-secondary" style="white-space: nowrap;">⚡ Auto-Fetch</button>
@@ -48,10 +48,10 @@
       </div>
 
       <div class="form-group">
-        <label class="form-label">Or Upload Your Own Meme Image:</label>
+        <label class="form-label">Or Upload Your Product / Meme Image:</label>
         <div id="dropzone" class="dropzone">
           <div class="dropzone-icon">📁</div>
-          <div style="font-weight: 600; font-size: 0.95rem;">Drag & drop meme image here</div>
+          <div style="font-weight: 600; font-size: 0.95rem;">Drag & drop image here</div>
           <div style="color: var(--text-dim); font-size: 0.8rem; margin-top: 4px;">Supports PNG, JPG, JPEG, WEBP</div>
           <input type="file" id="file-input" accept="image/png,image/jpeg,image/webp" style="display: none;">
         </div>
@@ -59,22 +59,37 @@
 
       <!-- Preview Image -->
       <div id="preview-container" class="preview-container" style="display: none;">
-        <img id="preview-img" class="preview-image" alt="Meme Preview">
+        <img id="preview-img" class="preview-image" alt="Product Preview">
       </div>
 
-      <h2 class="card-title" style="margin-top: 24px;">🎙️ 2. Casting & Style Settings</h2>
+      <h2 class="card-title" style="margin-top: 24px;">💼 2. Product Details & Pitch</h2>
+
+      <div class="form-group">
+        <label class="form-label">Product / Brand Name:</label>
+        <input type="text" id="product-name" class="form-input" placeholder="e.g. TaskFlow AI or ZapBilling" value="TaskFlow AI">
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Product Description & What Problem It Solves:</label>
+        <textarea id="product-desc" class="form-input" rows="3" placeholder="Describe what the product does and the painful problem it eliminates...">Autonomous AI project manager that automatically converts chaotic client requests into organized tickets, prevents scope creep, and stops clients from underpaying.</textarea>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Target Audience:</label>
+        <select id="target-audience" class="form-select">
+          <option value="Freelancers, Agency Owners & Developers">Freelancers, Agency Owners & Developers</option>
+          <option value="Startups & Small Business Owners">Startups & Small Business Owners</option>
+          <option value="Corporate 9-to-5 Employees & Managers">Corporate 9-to-5 Employees & Managers</option>
+          <option value="Gen Z & Online Shoppers">Gen Z & Online Shoppers</option>
+          <option value="College Students & Young Professionals">College Students & Young Professionals</option>
+        </select>
+      </div>
+
+      <h2 class="card-title" style="margin-top: 24px;">🎙️ 3. Casting & Voice Settings</h2>
 
       <div class="form-group" id="api-key-container" style="display: none;">
         <label class="form-label">Sarvam API Key (optional if in .env):</label>
         <input type="password" id="custom-api-key" class="form-input" placeholder="Paste your Sarvam API key here">
-      </div>
-
-      <div class="form-group">
-        <label class="form-label">Conversation Mode:</label>
-        <select id="conv-mode" class="form-select">
-          <option value="meme_characters">🎭 Meme Characters Live Dialogue (Characters in meme argue)</option>
-          <option value="podcast_hosts">🎙️ Comedy Roast Duo (Two hosts banter & review)</option>
-        </select>
       </div>
 
       <div class="grid-2">
@@ -93,40 +108,38 @@
           </select>
         </div>
         <div class="form-group">
-          <label class="form-label">Humor Roast Style:</label>
+          <label class="form-label">Marketing Humor Style:</label>
           <select id="humor-style" class="form-select">
-            <option value="standup" selected>🎤 Stand-up Comedy Club</option>
-            <option value="roast">🔥 Savage Comedic Roast</option>
-            <option value="relatable">💡 Relatable Irony Breakdown</option>
+            <option value="standup" selected>🎤 Stand-up Product Roast</option>
+            <option value="roast">🔥 Savage Competitor Roast</option>
+            <option value="relatable">💡 Relatable Customer Pain Point</option>
           </select>
         </div>
       </div>
 
       <div class="grid-2">
         <div class="form-group">
-          <label class="form-label">Speaker 1 Voice (Bulbul):</label>
+          <label class="form-label">Speaker 1 Voice (Customer):</label>
           <select id="voice-spk1" class="form-select">
-            <option value="rohan" selected>Rohan (Expressive Male)</option>
+            <option value="rohan" selected>Rohan (Stressed Customer)</option>
             <option value="dev">Dev (Casual Male)</option>
-            <option value="aditya">Aditya (Energetic Male)</option>
-            <option value="kabir">Kabir (Deep Male)</option>
+            <option value="kabir">Kabir (Deep Voice)</option>
             <option value="sunny">Sunny (High energy)</option>
           </select>
         </div>
         <div class="form-group">
-          <label class="form-label">Speaker 2 Voice (Bulbul):</label>
+          <label class="form-label">Speaker 2 Voice (Product/Hero):</label>
           <select id="voice-spk2" class="form-select">
-            <option value="simran" selected>Simran (Expressive Female)</option>
-            <option value="priya">Priya (Conversational Female)</option>
-            <option value="ritu">Ritu (Animated Female)</option>
-            <option value="pooja">Pooja (Clear Female)</option>
-            <option value="kavya">Kavya (Lively Female)</option>
+            <option value="simran" selected>Simran (Smart Solution)</option>
+            <option value="aditya">Aditya (Confident Pitch)</option>
+            <option value="priya">Priya (Conversational)</option>
+            <option value="ritu">Ritu (Animated)</option>
           </select>
         </div>
       </div>
 
       <div class="form-group">
-        <label class="form-label">Stand-up Comedian Voice:</label>
+        <label class="form-label">Stand-up Pitch Narrator Voice:</label>
         <select id="voice-comedian" class="form-select">
           <option value="aditya" selected>Aditya (Punchy Stand-up Delivery)</option>
           <option value="sunny">Sunny (High-energy Roast Delivery)</option>
@@ -136,7 +149,7 @@
       </div>
 
       <button id="btn-generate" class="btn-primary" disabled>
-        <span>🚀 Generate Speech Conversation & Humor Roast</span>
+        <span>🚀 Launch Meme Marketing Engine</span>
       </button>
     </div>
 
@@ -145,18 +158,18 @@
       <!-- Loading Spinner -->
       <div id="spinner-container" class="spinner-container">
         <div class="spinner"></div>
-        <div id="step-text" class="step-indicator">Sarvam Multimodal AI is perceiving the meme...</div>
+        <div id="step-text" class="step-indicator">Sarvam Multimodal AI is analyzing the product & generating memes...</div>
         <p style="color: var(--text-dim); font-size: 0.85rem; margin-top: 8px;">
-          Using Sarvam AI Vision, Script Generation, and Bulbul Text-to-Speech
+          Using Sarvam AI Vision, Scripting & Bulbul Text-to-Speech
         </p>
       </div>
 
       <!-- Empty State -->
       <div id="empty-state" class="empty-state">
-        <div class="empty-icon">🎭</div>
-        <h2 style="color: #fff; margin-bottom: 8px;">Bring Your Memes to Life</h2>
-        <p style="max-width: 480px; margin: 0 auto; color: var(--text-muted);">
-          Pick a meme on the left or drop your own image. Sarvam AI will extract the visual joke, generate a hilarious speech conversation with voice actors, deliver a stand-up comedy roast, and extend the meme into an escalated sequel!
+        <div class="empty-icon">📈</div>
+        <h2 style="color: #fff; margin-bottom: 8px;">Digital Marketing Through Memes</h2>
+        <p style="max-width: 500px; margin: 0 auto; color: var(--text-muted);">
+          Provide your product image (or link) and a brief description. Sarvam AI will extract customer pain points, make the meme <b>talk out loud</b> with voice actors, generate <b>new viral marketing meme images</b>, deliver a <b>stand-up comedy product pitch</b>, and write <b>ready-to-post social copy</b>!
         </p>
       </div>
 
@@ -164,26 +177,27 @@
       <div id="results-container" style="display: none;">
         <!-- Intelligence Summary Card -->
         <div class="intel-card">
-          <span id="intel-template" class="intel-badge">Classic Meme</span>
-          <h2 id="intel-title" class="intel-title">Meme Title</h2>
-          <div id="intel-text" style="color: #94a3b8; font-size: 0.95rem; margin-bottom: 8px;">"Text"</div>
-          <div id="intel-punchline" class="intel-punchline">💥 The Joke</div>
-          <p id="intel-why" class="intel-why">Why it is funny</p>
+          <span id="intel-template" class="intel-badge">VIRAL CAMPAIGN</span>
+          <h2 id="intel-title" class="intel-title">Campaign Title</h2>
+          <div id="intel-hook" style="color: #c084fc; font-weight: 700; font-size: 1.05rem; margin-bottom: 8px;">"Ad Hook"</div>
+          <div id="intel-punchline" class="intel-punchline">💥 The Pain Point</div>
+          <p id="intel-why" class="intel-why">How the product solves it</p>
         </div>
 
         <!-- Navigation Tabs -->
         <div class="tabs-header">
-          <button class="tab-btn active" data-target="tab-act1">🗣️ Speech Conversation (Act 1)</button>
-          <button class="tab-btn" data-target="tab-standup">🎙️ Stand-up Humor Speech</button>
-          <button class="tab-btn" data-target="tab-sequel">🚀 Extended Meme Sequel (Act 2)</button>
+          <button class="tab-btn active" data-target="tab-act1">🗣️ "Talk the Meme" (Voice Ad Skit)</button>
+          <button class="tab-btn" data-target="tab-memes">🖼️ Generated Marketing Memes</button>
+          <button class="tab-btn" data-target="tab-standup">🎙️ Stand-up Product Pitch</button>
+          <button class="tab-btn" data-target="tab-social">📱 Viral Social Media Copy</button>
         </div>
 
-        <!-- Tab 1: Act 1 Speech Conversation -->
+        <!-- Tab 1: "Talk the Meme" (Voice Ad Skit) -->
         <div id="tab-act1" class="tab-pane active">
           <div id="act1-master-container" class="master-player-card" style="display: none;">
             <div class="master-player-header">
-              <span>▶️ Play Full Continuous Dialogue</span>
-              <span style="font-size: 0.8rem; color: #a855f7; font-weight: normal;">(Sarvam Bulbul Stitched Audio)</span>
+              <span>▶️ Play Full Audio Ad Skit (30s)</span>
+              <span style="font-size: 0.8rem; color: #a855f7; font-weight: normal;">(Sarvam Bulbul Multi-Voice Ad)</span>
             </div>
             <audio id="act1-master-audio" controls></audio>
           </div>
@@ -193,52 +207,60 @@
           </div>
         </div>
 
-        <!-- Tab 2: Stand-up Humor Speech -->
+        <!-- Tab 2: Generated Marketing Memes (Visual Images) -->
+        <div id="tab-memes" class="tab-pane">
+          <h3 style="color: #fff; margin-bottom: 8px;">🖼️ Brand Marketing Meme Images</h3>
+          <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 20px;">
+            These custom meme images were created specifically for your product to drive engagement and viral shares!
+          </p>
+          <div id="memes-gallery-container" style="display: flex; flex-direction: column; gap: 24px;">
+            <!-- Populated with generated comic meme images -->
+          </div>
+        </div>
+
+        <!-- Tab 3: Stand-up Product Roast & Pitch -->
         <div id="tab-standup" class="tab-pane">
           <div class="standup-stage">
             <div class="stage-spotlight"></div>
             <div style="font-size: 0.82rem; color: #c084fc; font-weight: 700; text-transform: uppercase; margin-bottom: 12px; letter-spacing: 1px;">
-              🎙️ Stand-up Comedy Routine • Explaining What Joke it's Cracking
+              🎙️ Stand-up Comedy Routine • Roasting the Problem & Pitching the Product
             </div>
             <div id="standup-text" class="standup-quote">
               <!-- Comedian script -->
             </div>
             <div style="margin-top: 20px;">
-              <label class="form-label" style="color: #d8b4fe;">🔊 Listen to the Comedian Deliver the Speech:</label>
+              <label class="form-label" style="color: #d8b4fe;">🔊 Listen to the Comedian Deliver the Pitch:</label>
               <audio id="standup-audio" controls style="display: none;"></audio>
             </div>
           </div>
         </div>
 
-        <!-- Tab 3: Extended Meme Sequel (Act 2) -->
-        <div id="tab-sequel" class="tab-pane">
-          <div class="sequel-hero-card">
-            <div style="display: flex; justify-content: space-between; align-items: center;">
-              <span style="background: #ef4444; color: #fff; font-size: 0.75rem; font-weight: 800; padding: 4px 10px; border-radius: 6px; text-transform: uppercase;">
-                Act 2: The Extended Sequel
-              </span>
+        <!-- Tab 4: Viral Social Media Copy -->
+        <div id="tab-social" class="tab-pane">
+          <div style="display: flex; flex-direction: column; gap: 20px;">
+            <div style="background: rgba(225, 48, 108, 0.1); border: 1px solid rgba(225, 48, 108, 0.3); border-radius: var(--radius-md); padding: 18px;">
+              <h4 style="margin: 0 0 10px 0; color: #f472b6; display: flex; align-items: center; gap: 8px;">
+                📸 Instagram Post Caption
+              </h4>
+              <p id="social-ig" style="color: #f3f4f6; font-size: 0.95rem; line-height: 1.6; white-space: pre-wrap; margin-bottom: 12px;"></p>
+              <button class="btn-secondary" onclick="navigator.clipboard.writeText(document.getElementById('social-ig').innerText); alert('Copied Instagram caption!');">📋 Copy Instagram Copy</button>
             </div>
-            <h3 id="sequel-title" style="margin-top: 12px; color: #fff; font-size: 1.3rem;">Part 2: The Aftermath</h3>
-            <p id="sequel-situation" style="color: #fca5a5; font-size: 0.98rem; margin-top: 6px; line-height: 1.5;"></p>
-            <img id="sequel-meme-img" class="sequel-img-preview" alt="Generated Sequel Meme" style="display: none;">
-          </div>
 
-          <div id="seq-master-container" class="master-player-card" style="display: none; border-color: #ef4444;">
-            <div class="master-player-header" style="color: #f87171;">
-              <span>▶️ Play Full Sequel Conversation</span>
-              <span style="font-size: 0.8rem; color: #f87171; font-weight: normal;">(Act 2 Dialogue Audio)</span>
+            <div style="background: rgba(10, 102, 194, 0.1); border: 1px solid rgba(10, 102, 194, 0.3); border-radius: var(--radius-md); padding: 18px;">
+              <h4 style="margin: 0 0 10px 0; color: #60a5fa; display: flex; align-items: center; gap: 8px;">
+                💼 LinkedIn Post (B2B Meme Leadership)
+              </h4>
+              <p id="social-li" style="color: #f3f4f6; font-size: 0.95rem; line-height: 1.6; white-space: pre-wrap; margin-bottom: 12px;"></p>
+              <button class="btn-secondary" onclick="navigator.clipboard.writeText(document.getElementById('social-li').innerText); alert('Copied LinkedIn post!');">📋 Copy LinkedIn Copy</button>
             </div>
-            <audio id="seq-master-audio" controls></audio>
-          </div>
 
-          <div id="seq-chat-container" class="chat-container">
-            <!-- Populated with sequel dialogue bubbles -->
-          </div>
-
-          <div style="margin-top: 24px; padding: 20px; background: rgba(30, 41, 59, 0.6); border-radius: var(--radius-md); border-left: 4px solid var(--accent-amber);">
-            <h4 style="margin: 0 0 8px 0; color: #fbbf24;">🎙️ Extended Comedy Escalation Roast</h4>
-            <div id="seq-humor-text" style="font-style: italic; color: #fef3c7; line-height: 1.6; margin-bottom: 12px;"></div>
-            <audio id="seq-humor-audio" controls style="display: none;"></audio>
+            <div style="background: rgba(29, 155, 240, 0.1); border: 1px solid rgba(29, 155, 240, 0.3); border-radius: var(--radius-md); padding: 18px;">
+              <h4 style="margin: 0 0 10px 0; color: #38bdf8; display: flex; align-items: center; gap: 8px;">
+                🐦 Twitter / X Viral Tweet
+              </h4>
+              <p id="social-tw" style="color: #f3f4f6; font-size: 0.95rem; line-height: 1.6; white-space: pre-wrap; margin-bottom: 12px;"></p>
+              <button class="btn-secondary" onclick="navigator.clipboard.writeText(document.getElementById('social-tw').innerText); alert('Copied Tweet!');">📋 Copy Tweet</button>
+            </div>
           </div>
         </div>
 
@@ -250,4 +272,3 @@
   <script src="/app.js"></script>
 </body>
 </html>
-
